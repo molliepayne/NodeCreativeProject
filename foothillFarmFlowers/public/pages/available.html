@@ -51,14 +51,14 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6"> <h3>Select Color:</h3> <select @change="getflowersColor($event.target.value)" class="input-txt-smp pad2 form-control" style="width: 25;" v-model="ColorDrop" id="colors">
-      <option   v-bind:value="'Show All'">Show All</option>
-      <option   v-for="color in colors" v-bind:value="color">
+      <option class="insta"  v-bind:value="'Show All'">Show All</option>
+      <option class="insta"  v-for="color in colors" v-bind:value="color">
         {{color }}
       </option>
     </select></div>
      <div class="col-sm-6"><h3> Month Needed:</h3><select @change="getflowersMonth($event.target.value)" class="input-txt-smp pad2 form-control" style="width: 25;" v-model="MonthDrop" id="month">
-      <option   v-bind:value="'Show All'">Show All</option>
-      <option   v-for="month in months" v-bind:value="month">
+      <option class="insta"   v-bind:value="'Show All'">Show All</option>
+      <option class="insta"  v-for="month in months" v-bind:value="month">
         {{month }}
       </option>
     </select>

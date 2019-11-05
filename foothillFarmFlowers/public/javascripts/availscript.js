@@ -9,7 +9,7 @@ var app = new Vue({
     flowers: [],
     color: "",
     loading: true,
-    colors: ['red', 'blush', 'pink', 'black', 'lavendar', 'blue', 'purple', 'yellow', 'orange', 'apricot'],
+    colors: ['red', 'blush', 'pink', 'black', 'lavendar', 'blue', 'purple', 'yellow', 'orange', 'apricot', 'white', 'cream', 'green'],
     months: ['March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
 
     Color: "Show All",
@@ -21,7 +21,7 @@ var app = new Vue({
   created() {
     console.log("Created Color Drop: " + this.ColorDrop);
     this.getflowers("");
-
+    
 
   },
   computed: {
