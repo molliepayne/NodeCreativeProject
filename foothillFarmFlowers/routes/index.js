@@ -672,7 +672,7 @@ var flowers = [{
     
 ];
 function compare(a, b) {
-    console.log("in compare a: " + a +" b: " +  b);
+  //console.log("in compare a: " + a +" b: " +  b);
   const nameA = a.name.toUpperCase();
   const nameB = b.name.toUpperCase();
   
@@ -693,18 +693,18 @@ router.get('/', function(req, res) {
 
 
 router.get('/getflowers', function(req, res, next) {
-  console.log("in get flower route")
+  //console.log("in get flower route")
 
   //console.log("All FLowers: " + flowers);
   var filteredFlowers = flowers.filter(function(flower) {
     //console.log("query: " + req.query.color);
-    console.log("flower colors " + flower.colors + " flower bloomtime: " + flower.bloomMonths);
+   // console.log("flower colors " + flower.colors + " flower bloomtime: " + flower.bloomMonths);
     if(flower.colors.search(req.query.color)>=0 && flower.bloomMonths.search(req.query.month)>=0  && flower.name.search(req.query.variety)>=0)
       return true;
   });
   //console.log("Filtered FLowers: " + filteredFlowers);
   filteredFlowers.sort(compare);
-  console.log("Filtered FLowers: " + filteredFlowers);
+ // console.log("Filtered FLowers: " + filteredFlowers);
   res.status(200).json(filteredFlowers);
 
 });

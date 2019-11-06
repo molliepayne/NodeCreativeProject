@@ -235,12 +235,12 @@ section {
 
 aside {
     padding-left: 20px;
- flex: 2;
+ flex: 1;
  }
 
 article {
     
-     flex: 3;
+     flex: 4;
      padding-left: 60px;
      padding-right: 60px;
      vertical-align: middle;

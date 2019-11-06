@@ -21,7 +21,7 @@ var app = new Vue({
 
   },
   created() {
-    console.log("Created Color Drop: " + this.ColorDrop);
+    //console.log("Created Color Drop: " + this.ColorDrop);
     this.getflowers("");
     this.colors.sort();
     this.varieties.sort();
@@ -67,7 +67,7 @@ var app = new Vue({
     },
     async getflowersColor(color) {
       // `this` points to the vm instance
-      console.log("In Get Flowers Color Color Drop: " + this.ColorDrop + " color: "+ color);
+      //console.log("In Get Flowers Color Color Drop: " + this.ColorDrop + " color: "+ color);
       if(color==="Show All")
         color="";
       if(color!="")
@@ -77,7 +77,7 @@ var app = new Vue({
       }
       else
       {
-        console.log("Chaning color drop...");
+        //console.log("Chaning color drop...");
         this.Color = "Show All";
         this.ColorDrop = "Show All";
       }
@@ -87,7 +87,7 @@ var app = new Vue({
        var variety = "";
       if(this.VarietyDrop != "Show All")
         variety = this.VarietyDrop;
-      console.log("get flowers Variet: " + variety);
+      //console.log("get flowers Variet: " + variety);
       //console.log("Color Drop value: " + this.Color); 
       var url = "http://foothillfarmflowers.com:3030/getflowers?color=" + color + "&month=" + month+ "&variety=" + variety;
       console.log(url);
@@ -95,7 +95,7 @@ var app = new Vue({
         let response = await axios.get(url);
         this.flowers = response.data;
         //console.log(this.flowers);
-         console.log("end Get Flowers Color Color Drop: " + this.ColorDrop + " color: "+ color);
+         //console.log("end Get Flowers Color Color Drop: " + this.ColorDrop + " color: "+ color);
         return true;
       }
       catch (error) {
@@ -105,7 +105,7 @@ var app = new Vue({
     },
      async getflowersMonth(month) {
       // `this` points to the vm instance
-      console.log("Color Drop: " + this.ColorDrop);
+      //console.log("Color Drop: " + this.ColorDrop);
      
       if(month==="Show All")
         month="";
@@ -130,7 +130,7 @@ var app = new Vue({
         let response = await axios.get(url);
         this.flowers = response.data;
         //console.log(this.flowers);
-        console.log("Color Drop: " + this.ColorDrop);
+        //console.log("Color Drop: " + this.ColorDrop);
         return true;
       }
       catch (error) {
@@ -140,7 +140,7 @@ var app = new Vue({
     },
      async getflowersVariety(variety) {
       // `this` points to the vm instance
-      console.log("In Get Flowers Variety Drop: " + this.VarietyDrop + " color: "+ color);
+      //console.log("In Get Flowers Variety Drop: " + this.VarietyDrop + " color: "+ color);
       if(variety==="Show All")
         variety="";
       if(variety!="")
@@ -168,7 +168,7 @@ var app = new Vue({
         let response = await axios.get(url);
         this.flowers = response.data;
         //console.log(this.flowers);
-         console.log("end Get Flowers Color Color Drop: " + this.ColorDrop + " color: "+ color);
+         //console.log("end Get Flowers Color Color Drop: " + this.ColorDrop + " color: "+ color);
         return true;
       }
       catch (error) {
