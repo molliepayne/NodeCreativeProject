@@ -50,20 +50,26 @@
   <div id="app">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6"> <h3>Select Color:</h3> <select @change="getflowersColor($event.target.value)" class="input-txt-smp pad2 form-control" style="width: 25;" v-model="ColorDrop" id="colors">
-      <option class="insta"  v-bind:value="'Show All'">Show All</option>
-      <option class="insta"  v-for="color in colors" v-bind:value="color">
+      <div class="col-sm-4"> <h3>Select Color:</h3> <select class="selector" @change="getflowersColor($event.target.value)"  style="width: 25;" v-model="ColorDrop" id="colors">
+      <option class="selector"  v-bind:value="'Show All'">Show All</option>
+      <option class="selector"  v-for="color in colors" v-bind:value="color">
         {{color }}
       </option>
     </select></div>
-     <div class="col-sm-6"><h3> Month Needed:</h3><select @change="getflowersMonth($event.target.value)" class="input-txt-smp pad2 form-control" style="width: 25;" v-model="MonthDrop" id="month">
-      <option class="insta"   v-bind:value="'Show All'">Show All</option>
-      <option class="insta"  v-for="month in months" v-bind:value="month">
+     <div class="col-sm-4"><h3> Month Needed:</h3><select class="selector" @change="getflowersMonth($event.target.value)"  style="width: 25;" v-model="MonthDrop" id="month">
+      <option class="selector"   v-bind:value="'Show All'">Show All</option>
+      <option class="selector"  v-for="month in months" v-bind:value="month">
         {{month }}
       </option>
     </select>
     </div>
-   
+    <div class="col-sm-4"><h3> Flower Variety:</h3><select class="selector" @change="getflowersVariety($event.target.value)"  style="width: 25;" v-model="VarietyDrop" id="variety">
+      <option class="selector"   v-bind:value="'Show All'">Show All</option>
+      <option class="selector"  v-for="variety in varieties" v-bind:value="variety">
+        {{variety }}
+      </option>
+    </select>
+    </div>
     </div>
     
   </div>
@@ -73,7 +79,7 @@
 
         <div v-for="flower in flowers">
           <div class="row">
-            <div class="col-md-4"><img class='flowerPic' v-bind:src="flower.imageUrl" /></div>
+            <div class="col-md-4"><a :href="flower.infoLink"><img class='flowerPic' v-bind:src="flower.imageUrl" /></a><br><a :href="flower.infoLink">Image Source</a></div>
             <div class="col-md-8"><h2>{{ flower.name }}</h2>
               <p>In Bloom: {{flower.bloomMonths}}<br>
               Colors: {{flower.colors}}</p>

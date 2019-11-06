@@ -27,12 +27,19 @@ body
     color: #000000;
    
 }
-
+.dropdown
+{
+ color: #fff;
+ text-shadow: 2px 2px 2px #aaa;
+}
 .flowerPic
 {
     width: 300px;
 }
-
+.selector{
+     font-family: 'Quicksand', sans-serif;
+     font-size: 24px;
+}
 
 .insta{
     font-family: 'Quicksand', sans-serif;
@@ -43,9 +50,21 @@ body
     font-weight: bold;
     font-size: 24px;
 }
+a:link, a:visited {
+ 
+  color: black;
+ 
+  
+  text-decoration: none;
+ 
+}
 
+a:hover, a:active {
+  color: lightpink;
+}
 a {
   text-decoration: none;
+  color:pink;
 }
 
 nav {
@@ -231,10 +250,10 @@ article {
     padding-left: 10px;
     padding-right: 10px;
     font-size: 18px;
-    text-align: left;
+   
     padding-bottom: 10px;
     text-align: center;
-}
+
 }
 .wrapper {
   padding: 10px;
