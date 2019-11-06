@@ -22,7 +22,7 @@ var app = new Vue({
   },
   created() {
     //console.log("Created Color Drop: " + this.ColorDrop);
-    this.getflowers("");
+    this.getflowers();
     this.colors.sort();
     this.varieties.sort();
 

@@ -49,8 +49,9 @@
     <hr>
   </div>
   <div id="app">
+    <div clss="container">
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-9">
 
         <div v-if="loading">
           <p>Loading...</p>
@@ -79,7 +80,7 @@
                   <div class="insta">{{postDate(insta.caption.created_time*1000)}}</div>
 
                   <a :href="insta.link">
-                  <img :src="insta.images.low_resolution.url" :alt="insta.text"/>
+                  <img class="instaPic" :src="insta.images.low_resolution.url" :alt="insta.text"/>
                 </a>
 
                   <figcaption class="insta">{{insta.caption.text.substr(0, 40) + "..."}}</figcaption>
@@ -90,7 +91,7 @@
                 <figure v-if="filteredInstas.length-1 > index+1">
                   <div class="insta">{{postDate(instagrams[index+1].caption.created_time*1000)}}</div>
                   <a :href="filteredInstas[index+1].link">
-                  <img :src="filteredInstas[index+1].images.low_resolution.url" :alt="filteredInstas[index+1].text"/>
+                  <img class="instaPic" :src="filteredInstas[index+1].images.low_resolution.url" :alt="filteredInstas[index+1].text"/>
                 </a>
                   <figcaption class="insta">{{filteredInstas[index+1].caption.text.substr(0, 40) + "..."}}</figcaption>
                 </figure>
@@ -100,7 +101,7 @@
                 <figure v-if="filteredInstas.length-1 > index+2">
                   <div class="insta">{{postDate(instagrams[index+2].caption.created_time*1000)}}</div>
                   <a :href="filteredInstas[index+2].link">
-                  <img :src="filteredInstas[index+2].images.low_resolution.url" :alt="filteredInstas[index+2].text"/>
+                  <img class="instaPic" :src="filteredInstas[index+2].images.low_resolution.url" :alt="filteredInstas[index+2].text"/>
                 </a>
                   <figcaption class="insta">{{filteredInstas[index+2].caption.text.substr(0, 40) + "..."}}</figcaption>
                 </figure>
@@ -114,7 +115,7 @@
       </div>
 
 
-      <div class="col-sm-3 offset-sm-1 blog-sidebar">
+      <div class="col-sm-3 blog-sidebar">
         <div class="sidebar-module sidebar-module-inset">
           <div v-if="loadingWeather">
             <p>Loading Weather...</p>
@@ -148,6 +149,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
