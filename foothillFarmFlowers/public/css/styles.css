@@ -5,6 +5,7 @@
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC);
 @import url(https://fonts.googleapis.com/css?family=Sacramento);
 
+
 html {
     height: 100%;
     font-family: 'Quicksand', serif;
@@ -40,6 +41,7 @@ body {
   top: 0;
   width: 100%;
 }
+
 .instaPic{
 max-width: 100%;
 }

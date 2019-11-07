@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 
 <head>
-  <meta property="og:image" content="http://foothillfarmflowers.com/CreativeProject3/images/iceland%20poppie.JPG"/>
+  <meta property="og:image" content="http://foothillfarmflowers.com/CreativeProject3/images/iceland%20poppie.JPG" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/styles.css" />
   <title>Foothill Farm Flowers - Garden Journal</title>
 </head>
 
 <body>
-  <a class="navbar-brand" href="../index.html">Foothill Farm Flowers</a>
+  <a class="navbar-brand " href="../index.html">Foothill Farm Flowers</a>
   <h2>Our micro urban farm located on the foothills in Provo, Utah</h2>
 
-
+<div class="content">
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,8 +48,8 @@
     <hr>
   </div>
   <div id="app">
-    <div clss="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
       <div class="col-sm-9">
 
         <div v-if="loading">
@@ -62,15 +61,17 @@
           <hr>
           <p>
             <center>
+              
               <button v-on:click="viewAll">View All</button>
               <button v-on:click="mostLiked">Most Liked</button>
               <button v-on:click="onTheFarm">On The Farm</button>
               <button v-on:click="withComments">With Commments</button>
               <button v-on:click="multipleImages">Mulptiple Pictures</button>
+           
             </center>
           </p>
 
-          <div clss="container" v-if="instagrams.length > 0">
+          <div class="container" v-if="instagrams.length > 0">
 
             <div v-for="(insta, index) in filteredInstas" v-if="index%3===0" class="row">
 
@@ -112,10 +113,10 @@
           <div v-else class="loading"></div>
 
         </div>
+
+
       </div>
-
-
-      <div class="col-sm-3 blog-sidebar">
+      <div class="col-sm-3">
         <div class="sidebar-module sidebar-module-inset">
           <div v-if="loadingWeather">
             <p>Loading Weather...</p>
@@ -132,25 +133,26 @@
 
 
             <hr>
-            </div>
-            <div class="sidebar-module sidebar-module-inset">
-              <div v-if="loadingWeatherHistory">
-            <p>Loading Weather History...</p>
-          </div>
-          <div v-else>
-              <h3>Farm Weather History</h3>
 
-              <hr>
-              <ul>Today's Max Wind Gust: {{this.weather[0].lastData.maxdailygust}} mph</ul>
-              <ul>This Week's Rainfall: {{this.weather[0].lastData.weeklyrainin}} inches</ul>
-              <ul>This Month's Rainfall: {{this.weather[0].lastData.monthlyrainin}} inches</ul>
-              <ul>This Year's Rainfall: {{this.weather[0].lastData.totalrainin}} inches</ul>
-              <ul>Date of Last Rainfall: {{postDate(this.weather[0].lastData.lastRain)}}</ul>
+            <div class="sidebar-module sidebar-module-inset">
+              <div v-if="loadingWeather">
+                <p>Loading Weather History...</p>
+              </div>
+              <div v-else>
+                <h3>Farm Weather History</h3>
+
+                <hr>
+                <ul>Today's Max Wind Gust: {{this.weather[0].lastData.maxdailygust}} mph</ul>
+                <ul>This Week's Rainfall: {{this.weather[0].lastData.weeklyrainin}} inches</ul>
+                <ul>This Month's Rainfall: {{this.weather[0].lastData.monthlyrainin}} inches</ul>
+                <ul>This Year's Rainfall: {{this.weather[0].lastData.totalrainin}} inches</ul>
+                <ul>Date of Last Rainfall: {{postDate(this.weather[0].lastData.lastRain)}}</ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
+    </div>
     </div>
   </div>
   <div class="parallaxmid">
@@ -194,11 +196,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-item nav-link" href="order blooms.html">Buy Blooms</a>
-           <ul class="dropdown" aria-label="submenu">
-            <li><a href="available.html">Availbility</a></li>
-            <li><a href="order blooms.html">Join CSA</a></li>
-            <li><a href="#">Roadside Stand</a></li>
-          </ul>
+            <ul class="dropdown" aria-label="submenu">
+              <li><a href="available.html">Availbility</a></li>
+              <li><a href="order blooms.html">Join CSA</a></li>
+              <li><a href="#">Roadside Stand</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-item nav-link" href="about.html">Our Story</a>
@@ -208,6 +210,7 @@
       </div>
       <hr>
     </nav>
+    </div>
     <hr> All Rights Reserved, Mollie Payne<br>
 
   </footer>
@@ -219,7 +222,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+   
   <script src="../javascripts/script.js"></script>
+ 
 </body>
 
 </html>

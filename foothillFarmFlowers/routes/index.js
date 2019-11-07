@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var request = require("request");
 var fs = require('fs');
+var BootstrapVue= require("bootstrap-vue");
+
 var flowers = [{
     name: 'China Aster: King Size Apricot',
     colors: 'pink, apricot, blush, orange',
@@ -660,7 +662,19 @@ var flowers = [{
       bloomMonths: 'July, August, September', 
       infoLink: 'waltersgardens.com/variety.php?ID=VERWA'
     }, 
-       
+        {
+      name: 'Peony Duchess de Nemours',
+      colors: 'white, yellow, cream',
+      imageUrl: 'https://cdn.shopify.com/s/files/1/1419/7120/products/Peony_Duchess_de_Numerous.SHUT_1024x.jpg?v=1571439568',
+      bloomMonths: 'June', 
+      infoLink: 'https://www.easytogrowbulbs.com/collections/climate-zone-7/products/peony-duchess-de-nemours?variant=42687437708'
+    },  {
+      name: 'Peony Festiva Maxima',
+      colors: 'white, pink, white, yellow, red',
+      imageUrl: 'https://cdn.shopify.com/s/files/1/1419/7120/products/Peony_Festiva_Maxima_2_.SHUT_1024x.jpg?v=1571439568',
+      bloomMonths: 'May, June', 
+      infoLink: 'https://www.easytogrowbulbs.com/collections/white/products/peony-festiva-maxima?variant=42687459404'
+    }, 
      {
       name: 'Lily Soft Music',
       colors: 'lavendar, pink, white, cream',
@@ -690,7 +704,43 @@ router.get('/', function(req, res) {
   res.sendFile('index.html', { root: 'public' });
 });
 
-
+router.get('/insta', function(req, res, next) {
+    console.log("in insta route")
+    console.log(req.query);
+    if(req.query!==null)
+    {
+      var UserID = req.query.UserID;
+      var AccessToken = req.query.AccessToken;
+    }
+    else{
+     var UserID = "";
+      var AccessToken = "";
+    }
+    console.log("userID: " + UserID);
+    console.log("accessToken: " + AccessToken);
+    var instarest = "https://api.instagram.com/v1/users/" + UserID + '/media/recent?access_token=' + AccessToken;
+    console.log(instarest);
+    request(instarest).pipe(res);
+});
+router.get('/weather', function(req, res, next) {
+    console.log("in weather route")
+    console.log(req.query);
+    var apiKey = req.query.apiKey;
+    console.log("apiKey: " + apiKey);
+    var applicationKey = req.query.applicationKey;
+    var weatherrest = 'https://api.ambientweather.net/v1/devices/?apiKey=' + apiKey + '&applicationKey=' + applicationKey;
+    console.log(weatherrest);
+    request(weatherrest).pipe(res);
+});
+router.get('/weatherHist', function(req, res, next) {
+    console.log("in owl route")
+    console.log(req.query);
+    var query = req.query.q;
+    console.log("query: " + query);
+    var owlrest = "https://owlbot.info/api/v1/dictionary/" + query + "?format=json";
+    console.log(owlrest);
+    request(owlrest).pipe(res);
+});
 
 router.get('/getflowers', function(req, res, next) {
   //console.log("in get flower route")
