@@ -48,22 +48,23 @@
   </div>
   <hr>
   <div id="app">
+    
   <div class="container">
     <div class="row">
-      <div class="col-sm-4"> <h2>Select Color:</h2> <select class="selector" @change="getflowersColor($event.target.value)"  style="width: 25;" v-model="ColorDrop" id="colors">
+      <div class="col-sm-4"> <h2>Select Color:</h2> <select class="selector" @change="getflowers($event.target.value)"  style="width: 25;" v-model="ColorDrop" id="colors">
       <option class="selector"  v-bind:value="'Show All'">Show All</option>
       <option class="selector"  v-for="color in colors" v-bind:value="color">
         {{color }}
       </option>
     </select></div>
-     <div class="col-sm-4"><h2> Month Needed:</h2><select class="selector" @change="getflowersMonth($event.target.value)"  style="width: 25;" v-model="MonthDrop" id="month">
+     <div class="col-sm-4"><h2> Month Needed:</h2><select class="selector" @change="getflowers($event.target.value)"  style="width: 25;" v-model="MonthDrop" id="month">
       <option class="selector"   v-bind:value="'Show All'">Show All</option>
       <option class="selector"  v-for="month in months" v-bind:value="month">
         {{month }}
       </option>
     </select>
     </div>
-    <div class="col-sm-4"><h2> Flower Variety:</h2><select class="selector" @change="getflowersVariety($event.target.value)"  style="width: 25;" v-model="VarietyDrop" id="variety">
+    <div class="col-sm-4"><h2> Flower Variety:</h2><select class="selector" @change="getflowers($event.target.value)"  style="width: 25;" v-model="VarietyDrop" id="variety">
       <option class="selector"   v-bind:value="'Show All'">Show All</option>
       <option class="selector"  v-for="variety in varieties" v-bind:value="variety">
         {{variety }}
@@ -95,6 +96,18 @@
       <br>
       <h3>Try selecting a different color or a different month.</h3>
     </div>
+    <hr>
+    <h3> Enter A New Flower</h3>
+    <form v-on:submit.prevent="addFlower">
+        
+      Name: <input type="text" v-model="flowerName"><br><br>
+      Flower Colors: <input type="text" v-model="flowerColors"><br><br>
+      Image URL: <input type="url" v-model="imageUrl"><br><br>
+      Months in bloom: <input type="text" v-model="bloomMonths"/><br><br>
+      Link to Image Website: <input type="url" v-model="infoLink"><br><br>
+      Flower Variety: <input type="text" v-model="flowerVariety">
+      <button type="submit">Add</button>
+    </form>
   </div>
   <hr>
 
