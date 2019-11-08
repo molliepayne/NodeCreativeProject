@@ -11,20 +11,28 @@ var app = new Vue({
     loading: true,
     colors: ['red', 'blush', 'pink', 'black', 'lavendar', 'blue', 'purple', 'yellow', 'orange', 'apricot', 'white', 'cream', 'green'],
     months: ['March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
-    varieties: ['Ageratum', 'Basil', 'Celosia', 'China Aster', 'Clarkia', 'Clary Sage', 'Columbine', 'Coneflower', 'Cosmos', 'Dianthus', 'Didiscus', 'Daffodil', 'Foxglove', 'Gladiolus', 'Hyacinth', 'Iris', 'Leucojum', 'Lily', 'Muscari', 'Narcissus', 'Peony', 'Phlox', 'Poppy', 'Queen Anne', 'Rudbeckia', 'Salvia', 'Sabiosa', 'Snapdragon', 'Strawflower', 'Sunflower', 'Tulip', 'Yarrow', 'Zinnia'],
+    varieties: [],
     Color: "Show All",
     ColorDrop: "Show All",
     Month: "Show All", 
     MonthDrop: "Show All",
     Variety: "Show All", 
-    VarietyDrop: "Show All"
+    VarietyDrop: "Show All",
+    flowerName: "",
+    flowerColors: "",
+    imageUrl: "",
+    bloomMonths: "",
+    infoLink: "", 
+    flowerVariety: ""
+    
 
   },
   created() {
     //console.log("Created Color Drop: " + this.ColorDrop);
     this.getflowers();
+    this.getvarieties();
     this.colors.sort();
-    this.varieties.sort();
+    
 
   },
   computed: {
@@ -51,7 +59,8 @@ var app = new Vue({
       return moment(date).format('MMMM Do YYYY h:mm A');
     },
     async getflowers() {
-     
+      
+      this.varieties.sort();
       var url = "http://foothillfarmflowers.com:3030/getflowers";
       console.log(url);
       try {
@@ -64,6 +73,47 @@ var app = new Vue({
         console.log(error);
       }
        
+    },
+     async getvarieties() {
+     
+      var url = "http://foothillfarmflowers.com:3030/getvarieties";
+      console.log(url);
+      try {
+        let response = await axios.get(url);
+        this.varieties = response.data;
+        this.varieties.sort();
+        return true;
+      }
+      catch (error) {
+        console.log(error);
+      }
+       
+    },
+    async addFlower(){
+      var url = "http://foothillfarmflowers.com:3030/getflowers";
+      axios.post(url, {
+        name: this.flowerName,
+        colors: this.flowerColors,
+        imageUrl: this.imageUrl,
+        bloomMonths: this.bloomMonths,
+        infoLink: this.infoLink, 
+        variety: this.flowerVariety
+      })
+      .then(response => {})
+        .catch(e => {
+          console.log(e);
+        });
+      this.varieties.push(this.flowerVariety);
+      console.log("added: " + this.flowerVariety);
+      console.log(this.varieties);
+      this.getflowers();
+      this.flowerName = '';
+      this.flowerColors = '';
+      this.imageUrl = '';
+      this.bloomMonths = '';
+      this.infoLink = '';
+      this.flowerVariety = '';
+      
     },
     async getflowersColor(color) {
       // `this` points to the vm instance

@@ -3,6 +3,8 @@ var router = express.Router();
 var request = require("request");
 var fs = require('fs');
 var BootstrapVue= require("bootstrap-vue");
+var mailingList = [];
+var varieties = ['Ageratum', 'Basil', 'Celosia', 'China Aster', 'Clarkia', 'Clary Sage', 'Columbine', 'Coneflower', 'Cosmos', 'Dianthus', 'Didiscus', 'Daffodil', 'Foxglove', 'Gladiolus', 'Hyacinth', 'Iris', 'Leucojum', 'Lily', 'Muscari', 'Narcissus', 'Peony', 'Phlox', 'Poppy', 'Queen Anne', 'Rudbeckia', 'Salvia', 'Sabiosa', 'Snapdragon', 'Strawflower', 'Sunflower', 'Tulip', 'Yarrow', 'Zinnia'];
 
 var flowers = [{
     name: 'China Aster: King Size Apricot',
@@ -642,7 +644,7 @@ var flowers = [{
     infoLink: 'https://www.bulbsnblooms.com/rio-negro-oriental-lily--3-bulb3.html'
     }, 
      {
-      name: 'Peony Kansas',
+      name: 'Peony Coral Sunset',
       colors: 'pink',
       imageUrl: 'https://www.americanmeadows.com/media/catalog/product/c/o/coral-sunset_peony_visi115645_800x800_1.jpg?width=700&height=700&canvas=700:700&quality=80&bg-color=255,255,255&fit=bounds',
     bloomMonths: 'May, June', 
@@ -705,8 +707,8 @@ router.get('/', function(req, res) {
 });
 
 router.get('/insta', function(req, res, next) {
-    console.log("in insta route")
-    console.log(req.query);
+    //console.log("in insta route")
+    //console.log(req.query);
     if(req.query!==null)
     {
       var UserID = req.query.UserID;
@@ -716,31 +718,23 @@ router.get('/insta', function(req, res, next) {
      var UserID = "";
       var AccessToken = "";
     }
-    console.log("userID: " + UserID);
-    console.log("accessToken: " + AccessToken);
+   // console.log("userID: " + UserID);
+    //console.log("accessToken: " + AccessToken);
     var instarest = "https://api.instagram.com/v1/users/" + UserID + '/media/recent?access_token=' + AccessToken;
-    console.log(instarest);
+    //console.log(instarest);
     request(instarest).pipe(res);
 });
 router.get('/weather', function(req, res, next) {
-    console.log("in weather route")
-    console.log(req.query);
+    //console.log("in weather route")
+   // console.log(req.query);
     var apiKey = req.query.apiKey;
-    console.log("apiKey: " + apiKey);
+   // console.log("apiKey: " + apiKey);
     var applicationKey = req.query.applicationKey;
     var weatherrest = 'https://api.ambientweather.net/v1/devices/?apiKey=' + apiKey + '&applicationKey=' + applicationKey;
-    console.log(weatherrest);
+   // console.log(weatherrest);
     request(weatherrest).pipe(res);
 });
-router.get('/weatherHist', function(req, res, next) {
-    console.log("in owl route")
-    console.log(req.query);
-    var query = req.query.q;
-    console.log("query: " + query);
-    var owlrest = "https://owlbot.info/api/v1/dictionary/" + query + "?format=json";
-    console.log(owlrest);
-    request(owlrest).pipe(res);
-});
+
 
 router.get('/getflowers', function(req, res, next) {
   //console.log("in get flower route")
@@ -752,11 +746,43 @@ router.get('/getflowers', function(req, res, next) {
     if(flower.colors.search(req.query.color)>=0 && flower.bloomMonths.search(req.query.month)>=0  && flower.name.search(req.query.variety)>=0)
       return true;
   });
+  
   //console.log("Filtered FLowers: " + filteredFlowers);
   filteredFlowers.sort(compare);
  // console.log("Filtered FLowers: " + filteredFlowers);
   res.status(200).json(filteredFlowers);
 
 });
+router.get('/getvarieties', function(req, res, next) {
+  //console.log("in get flower route")
+
+  
+  res.status(200).json(varieties);
+
+});
+
+
+
+router.post('/getflowers', function(req, res) {
+    console.log("In GETFlowers Post");
+    console.log(req.body);
+    flowers.push(req.body);
+    varieties.push(req.body.variety);
+    console.log(varieties);
+    res.end('{"success" : "Updated Successfully", "status" : 200}');
+});
+router.get('/mailingList', function(req, res) {
+    console.log("In Mailing List GET");
+    console.log(req.body);
+    res.status(200).json(mailingList);
+}); 
+
+router.post('/mailingList', function(req, res) {
+    console.log("In Mailing List Post");
+    //console.log(req.body);
+    mailingList.push(req.body);
+    console.log(mailingList);
+    res.end('{"success" : "Updated Successfully", "status" : 200}');
+}); 
 
 module.exports = router;
